@@ -1,24 +1,26 @@
 def spiralOrder(self, matrix: List[List[int]]) -> List[int]: 
         output = []
-        #keeping track of elements that have been appended. 
+        left = 0 
+        top = 0
+        right = len(matrix[0])
+        bottom = len(matrix)
         
-        
-    
-        # we could first append the first row of the matrix
-        # increase the column by 1 
-        for j in range(len(matrix)):
-            output.append(matrix[0][j])
-        # the we traverse down the last column 
-        for i in range(1,len(matrix[0])):
-            output.append(matrix[i][j])
-        #left the last row 
-        while j < 0:
-            j -= 1
-            output.append(matrix[i][j])
-            
-        # second iteration you go up one less position 
-        
-        
+        while left< right and top < bottom:
+            for i in range(left,right):
+                output.append(matrix[top][i])
+            top += 1
+            for i in range(top,bottom):
+                output.append(matrix[i][right-1])
+            right -= 1
+            if not (left < right and top < bottom): 
+                break 
+            for i in range(right-1, left -1, -1):
+                output.append(matrix[bottom -1][i])
+            bottom -= 1
+            for i in range (bottom -1, top -1, -1):
+                output.append(matrix[i][left])
+            left +=1 
+        return output
         '''
         ---> 
         1 2 3 4
